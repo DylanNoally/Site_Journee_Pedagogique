@@ -1,0 +1,5 @@
+------------- Semaine du 11/09 au 17/09 ------------------
+- Modification du design des pages dans le but de l'adapter au template (CSS)
+- Création du "header" et du "footer"
+- Modification des pages ".html" en ".php"
+- Ajout du logo spécifique (favicon)
