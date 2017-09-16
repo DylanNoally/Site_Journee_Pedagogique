@@ -1,6 +1,6 @@
 # Site_Journee_Pedagogique
 
-- Lancement du projet le 00/09/2017
+- Lancement du projet le 11/09/2017
 - Equipe : Dylan NOALLY (chef de projet), Mattias MACCIOCU (développeur), Gradi MANDAMBU (développeur), Adnane ALIOUATE (développeur).
 
 ------- Répartitions des tâches -------
