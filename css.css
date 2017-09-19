@@ -1,0 +1,85 @@
+/* Contact page */
+#contact_title {
+	padding-left: 404px;
+	width: 100%;
+}
+
+.contact_form {
+	padding-left: 280px;
+	padding-right: 25px;
+}
+
+#contact_form_title {
+	padding-left: 75px;
+}
+
+/* Retour page */
+#retour_title {
+	padding-left: 421px;
+    width: 100%;
+}
+
+.main_block {
+	padding-top: 95px;
+	padding-bottom: 45px;
+	padding-left: 5px;
+	padding-right: 5px;
+}
+
+.img_block1 {
+	display: inline-block;
+	width: 100%;
+	padding-bottom: 50px;
+}
+
+.img_block2 {
+	display: inline-block;
+	width: 100%;
+	padding-top: 50px;
+	padding-bottom: 50px;
+}
+
+.img_block3 {
+	display: inline-block;
+	width: 100%;
+	padding-top: 50px;
+	padding-bottom: 50px;
+}
+
+.vid_block1 {
+	display: inline-block;
+	width: 100%;
+	padding-top: 50px;
+	padding-bottom: 50px;
+}
+
+.vid_block2 {
+	display: inline-block;
+	width: 100%;
+	padding-top: 50px;
+	padding-bottom: 50px;
+}
+
+.second_img {
+	display: inline-block;
+	margin-left: 595px;
+}
+
+.first_vid {
+	display: inline-block;
+	margin-left: 90px;
+}
+
+.second_vid {
+	display: inline-block;
+	margin-left: 100px;
+	margin-right: 100px;
+}
+
+.mental_card {
+	display: inline-block;
+	margin-left: 100px;
+	margin-right: 100px;
+	width: 391px;
+	height: 420px;
+}
