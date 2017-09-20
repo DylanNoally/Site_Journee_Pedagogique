@@ -42,31 +42,32 @@
 
       		<!-- Retour's blocks -->
 
-            <div class="main_block">
-            	<div class="img_block1">
-	            	<img src="img/image1.png"></img>
-	            	<img class="second_img" src="img/image1.png"></img>
-            	</div>
-            	<div class="img_block2">
-	                <img src="img/image1.png"></img>
-	                <img class="mental_card" src="img/carte_mentale.png"></img>
-	                <img src="img/image1.png"></img>
-            	</div>
-            	<div class="img_block3">
-	                <img src="img/image1.png"></img>
-	                <img class="second_img" src="img/image1.png"></img>
-            	</div>
+            <div class="main_block"><div class="img_block1">
+    				<img src="img/image1.png"></img>
+    				<img src="img/image1.png"></img>
+    				<img src="img/image1.png"></img>
+    			</div>
 
-            	<div class="vid_block1">
-	            	<img class="first_vid" src="img/image6.png"></img>
-	            	<img class="second_vid" src="img/image6.png"></img>
-	            	<img src="img/image6.png"></img>
+    			<p><img class="mental_card" src="img/carte_mentale.png"></img></p>
+
+    			<div class="img_block2">
+    				<img src="img/image1.png"></img>
+    				<img src="img/image1.png"></img>
+    				<img src="img/image1.png"></img>
+    			</div>
+
+    			<div class="vid_block1">
+    				<iframe src="https://www.youtube.com/embed/dgHx0zA_dS4" frameborder="0" allowfullscreen></iframe>
+	            	<iframe src="https://www.youtube.com/embed/dgHx0zA_dS4" frameborder="0" allowfullscreen></iframe>
+	            	<iframe src="https://www.youtube.com/embed/dgHx0zA_dS4" frameborder="0" allowfullscreen></iframe>
 	            </div>
 	            <div class="vid_block2">
-	            	<img class="first_vid" src="img/image6.png"></img>
-	            	<img class="second_vid" src="img/image6.png"></img>
-	            	<img src="img/image6.png"></img>
+	            	<iframe src="https://www.youtube.com/embed/dgHx0zA_dS4" frameborder="0" allowfullscreen></iframe>
+	            	<iframe src="https://www.youtube.com/embed/dgHx0zA_dS4" frameborder="0" allowfullscreen></iframe>
+	            	<iframe src="https://www.youtube.com/embed/dgHx0zA_dS4" frameborder="0" allowfullscreen></iframe>
 	            </div>
+
             </div>
         </div>
     </body>
+    			
