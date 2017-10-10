@@ -1,0 +1,44 @@
+body {
+	padding-top: 10%;
+	padding-left: 38%;
+    font-family:Helvetica,Arial,sans-serif;
+    line-height: 1.42857143;
+	background-image: url("../lycee_st_vincent-espaceAdmin.JPG");
+	background-size: cover;
+	background-repeat: no-repeat;
+}
+
+.form-control {
+	height:40px;
+    width:350px;
+}
+
+.btn {
+	color:#fff;
+	background-color:#337ab7;
+	border-color:#2e6da4;
+	height:40px;
+    width:350px;
+    text-align: center;
+}
+
+.form-signin, form
+{
+	text-align: center;
+	width: 40%;
+	border-radius: 40px;
+	padding: 30px;
+	background-color: #eee;
+}
+
+input {
+	padding: auto;
+	margin: auto;
+}
+
+img {
+	padding: auto;
+	margin:auto;
+	display:block;
+	text-align: center;
+}
