@@ -15,14 +15,24 @@
               <a class="nav-link" href="index.html">Programme</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="about.html">Live</a>
+              <a class="nav-link" href="about.html">Vidéos</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="../site/retour.php">Résumé</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="../site/contact.php">Contact</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="../site/retour.php">Retour</a>
-            </li>
+            <?php
+            if (key_exists('login', $_SESSION) && key_exists('id', $_SESSION)) 
+            {
+            ?>
+              <li class="nav-item">
+                <a class="nav-link" href="view/deconnexion.php" style="font-size: 12px; color:red"><?php echo $_SESSION['login'].' '; ?>Deconnexion</a>
+              </li>
+            <?php
+            }
+            ?>
           </ul>
         </div>
       </div>
