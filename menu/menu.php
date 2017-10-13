@@ -1,4 +1,4 @@
-<link href="menu/css/a.css" rel="stylesheet">
+<link href="menu/css/bn.css" rel="stylesheet">
 
 
 <!-- Navigation -->
@@ -27,8 +27,13 @@
             if (key_exists('login', $_SESSION) && key_exists('id', $_SESSION)) 
             {
             ?>
-              <li class="nav-item">
-                <a class="nav-link" href="view/deconnexion.php" style="font-size: 12px; color:red"><?php echo $_SESSION['login'].' '; ?>Deconnexion</a>
+              <li class="sign-out nav-item">
+                <a class="sign-out-name nav-link" href="#"><?php echo $_SESSION['login']; ?></a>
+
+                <ul>
+                  <li class="sign-out-link"><a href="view/deconnexion.php" style="margin-left: -38px; font-size: 14px; color: #FF0606;">Déconnexion</a></li>
+                </ul>
+
               </li>
             <?php
             }
