@@ -1,3 +1,12 @@
+<?php
+  // Start session BEFORE writing HTML code
+  session_start();
+
+  // Connexion to DataBase
+  $user = 'root';
+  $pass = '';
+  $bdd = new PDO('mysql:host=localhost;dbname=journee_peda;charset=utf8', 'root', '');
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -17,7 +26,7 @@
     <link href="css/modern-business.css" rel="stylesheet">
 
     <!-- Contact page's CSS -->
-    <link href="css/css.css" rel="stylesheet">
+    <link href="css/gg.css" rel="stylesheet">
 
   </head>
 
@@ -84,12 +93,7 @@
     <!-- /.container -->
 
     <!-- Footer -->
-    <footer class="py-5 bg-dark">
-      <div class="container">
-        <p class="m-0 text-center text-white">Copyright &copy; Your Website 2017</p>
-      </div>
-      <!-- /.container -->
-    </footer>
+    <?php include "view/footer.php"; ?>
 
     <!-- Bootstrap core JavaScript -->
     <script src="vendor/jquery/jquery.min.js"></script>
