@@ -1,0 +1,80 @@
+/* Rajout de style CSS pour le header (logo, titre) */
+.containerTop {
+  text-align:center;
+  margin-right:auto;
+  margin-left:auto;
+  padding-right:15px;
+  padding-left:15px;
+  width:100%
+}
+
+textarea {
+  width: 100%;
+}
+
+.top-title {
+  font-family:"Playfair Display",serif;
+  font-style: italic;
+  font-size: 2.571rem;
+  font-weight:500;
+}
+
+.under-title {
+  text-transform:uppercase;
+  color:#1e2d4c;
+  letter-spacing:7px;
+  font-size:0.8571rem;
+  font-weight:bold;
+  margin-bottom:20px;
+}
+/* Rajout de style CSS pour le header (logo, titre) */
+
+.social {
+  width:100%;
+  text-align:center;
+}
+
+.social li {
+  display:inline-block;
+  padding:0 5px;
+  margin-bottom:15px;
+  font-size:1.286rem;
+}
+
+.social li a {
+  display:block;
+  width:30px;
+  height:30px;
+  line-height:30px;
+  color:#19253D;
+  background-color:#efeded;
+  border-radius:50%;
+  transition:all 0.3s ease-out;
+  text-align:center;
+  opacity:0.4;
+}
+
+.social li a:hover {
+  opacity:1;
+}
+
+.social li a i {
+  color:white;
+}
+
+.realisation {
+    color: rgba(255,255,255,0.4);
+    font-size: 0.8571rem;
+    display: block;
+    width: 100%;
+    text-align: center;
+}
+
+.site-footer {
+  color:rgba(255,255,255,0.4);
+  padding: 40px 0;
+}
+
+@media (max-width:576px) {
+  .containerTop{min-width:100px}
+}
