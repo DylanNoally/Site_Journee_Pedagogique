@@ -75,6 +75,10 @@ textarea {
   padding: 40px 0;
 }
 
+.bg-dark {
+  background-color: #f1bc65 !important;
+}
+
 @media (max-width:576px) {
   .containerTop{min-width:100px}
 }
