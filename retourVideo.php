@@ -8,7 +8,7 @@
 	$bdd = new PDO('mysql:host=localhost;dbname=journee_peda;charset=utf8', 'root', '');
 
     // Toutes les informations sur les vidéos
-    $vid_block = $bdd->prepare('SELECT * FROM video');
+    $vid_block = $bdd->prepare('SELECT * FROM video WHERE VID_Type = "Illustration de la journée"');
     $vid_block->execute();
 ?>
 
@@ -31,7 +31,7 @@
         <link href="css/modern-business.css" rel="stylesheet">
 
          <!-- My CSS -->
-        <link href="css/pp.css" rel="stylesheet">
+        <link href="css/kk.css" rel="stylesheet">
 
     </head>
 
@@ -56,10 +56,83 @@
 
             <?php
                 while ($theVideo = $vid_block->fetch()) {
-                    echo '<div class="youtubeVideo"><iframe src="'.$theVideo['VID_Lien'].'" frameborder="0" allowfullscreen></iframe></div>';
+            ?>
+                    <div class="youtubeVideo">
+                        <?php
+                        if (isset($_SESSION['login']) && $_SESSION['id']) 
+                        {
+                        ?>
+                            <form method="POST" action="retourVideo.php">
+                                <div style="margin-left: 35%;">
+                                    <input type="url" name="modifLink" id="modifLink" placeholder="Ex : https://www.youtube.com/watch?v=GAdob1t4Nyk&t=84s&ab_channel=FeastOfFiction" size="15" maxlength="999" />
+                                </div>
+                                <input class="retourVideoModifVid" type="image" name="modifVid" value="Changer la vidéo" src="img/retour/modif_logo.png" />
+                                <input type="hidden" name="idVideo" value="<?php echo $theVideo['VID_Id']; ?>">
+                            </form>
+                        <?php
+                        }
+                        ?>
+                        <iframe src="<?php echo $theVideo['VID_Lien']; ?>" frameborder="0" allowfullscreen></iframe>
+                        <?php
+                        if (isset($_SESSION['login']) && $_SESSION['id']) 
+                        {
+                        ?>
+                            <form action="retourVideo.php" method="POST">
+                                <input class="retourVideoSuppVid" type="image" name="suppressVid" value="supprimer" src="img/retour/suppVideo_logo.png">
+                                <input type="hidden" name="idVideo" value="<?php echo $theVideo['VID_Id']; ?>">
+                            </form>
+                        <?php
+                        }
+                        ?>
+                    </div>
+                <?php
                 }
             ?>
         </div>
-        <?php include "view/footer.php"; ?>
+        <?php
+            include "view/suppressModifRetour.php";
+            include "view/footer.php"; 
+         ?>
     </body>
+    <?php
+        // Si l'utilisateur est connecté au site
+        if (isset($_SESSION['login']) && $_SESSION['id']) 
+        {
+    ?>
+            <style type="text/css">
+                .youtubeVideo { 
+                  margin-left: 87px;
+                }
+
+                @media (max-width: 1199px)
+                {
+                    .youtubeVideo {
+                        margin-left: 136px;
+                    }
+                }
+
+                @media (max-width: 992px)
+                {
+                    .youtubeVideo {
+                        margin-left: 204px;
+                    }
+                }
+
+                @media (max-width: 768px)
+                {
+                        .youtubeVideo {
+                        margin-left: 130px;
+                    }
+                }
+
+                @media all and (max-width: 400px) 
+                {
+                    .youtubeVideo {
+                        margin-left: 63px;
+                    }
+                }
+            </style>
+    <?php
+        }
+    ?>
 </html>
