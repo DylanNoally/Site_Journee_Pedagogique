@@ -30,9 +30,12 @@
 	$img_map = $bdd->prepare('SELECT * FROM images WHERE IMA_Type = "Carte mentale de la journée"');
 	$img_map->execute();
 
-	// Toutes les informations sur les neufs premières vidéos
-	$vid_block = $bdd->prepare('SELECT * FROM video  WHERE VID_Type = "Illustration de la journée" LIMIT 9');
-	$vid_block->execute();
+	// Toutes les informations sur les textes
+	$text_block_left = $bdd->prepare('SELECT * FROM texte  WHERE TEX_Type = "Illustration de la journée"');
+	$text_block_left->execute();
+
+	$text_block_right = $bdd->prepare('SELECT * FROM texte  WHERE TEX_Type = "Illustration de la journée"');
+	$text_block_right->execute();
 
 	
 
@@ -58,7 +61,7 @@
         <link href="css/modern-business.css" rel="stylesheet">
 
          <!-- My CSS -->
-        <link href="css/kk.css" rel="stylesheet">
+        <link href="css/sic.css" rel="stylesheet">
 
     </head>
 
@@ -94,6 +97,16 @@
 					    document.getElementById("buttonImage").innerHTML = '<div style="width: 100%"><form action="retour.php" method="post" enctype="multipart/form-data"><div class="buttonImageLabel"><input type="hidden" name="MAX_FILE_SIZE" value="300000">Selectioner une image (si carte mentale alors, de préférence veiller à la renommer en : carte_mentale) :</div><div><input class="buttonImageSelectFile" type="file" name="fileToUpload" id="fileToUpload"></div><div><input class="buttonImageSubmit" type="submit" value="Valider" name="submit"></div></form></div>';
 					}
 				</script>
+
+				<button class="buttonTestimony" onclick="btnClickTestimony()">Ajouter un témoignage</button>
+
+				<p id="buttonTestimony"></p>
+
+				<script>
+					function btnClickTestimony() {
+					    document.getElementById("buttonTestimony").innerHTML = '<div style="width: 100%"><form method="post" action="retour.php"><p><label for="testimony" class="buttonTestimonyLabel">Ajouter un témoignage</label><br /><textarea class="testimonyArea" name="testimony" id="testimony" rows="11" cols="31"></textarea></p><input class="buttonTestimonySubmit" type="submit" value="Valider"></form></div>';
+					}
+				</script>
 			<?php
 			}
 			?>
@@ -120,7 +133,7 @@
 										<input class="updateImgRightPath" type="file" name="modif_fileToUpload" id="modif_fileToUpload">
 										<input type="hidden" name="idImage" value="<?php echo $theImageRight['IMA_Id']; ?>">
 									</div>
-									<input class="updateImgRight" type="image" value="Changer l'image" name="submit" src="img/retour/modif_logo">
+									<input class="updateImgRight" type="image" value="Changer l'image" name="submit" src="img/retour/modif_logo.png">
 								</form>
 	    			<?php
 	    					}
@@ -132,13 +145,22 @@
 							{
 	    			?>
 		    					<form action="retour.php" method="POST">
-		    						<input class="suppImgRight" type="image" name="suppressImg" value="supprimer" src="img/retour/supp_logo">
+		    						<input class="suppImgRight" type="image" name="suppressImg" value="supprimer" src="img/retour/supp_logo.png">
 		    						<input type="hidden" name="idImage" value="<?php echo $theImageRight['IMA_Id']; ?>">
 		    					</form>
 	    			<?php
 	    					}
 	    				}
 	    				$counter++;
+    				}
+
+    				while ($textRight = $text_block_right->fetch()) {
+    					// Si le compteur est pair
+            			if ($counter%2 == 0)
+            			{
+            				echo "<div class=\"tex_right\"><p>".$textRight['TEX_Text']."</p></div>";
+            			}
+            			$counter++;
     				}
     				?>
     			</div>
@@ -162,7 +184,7 @@
 										<input class="updateImgMapPath" type="file" name="modif_fileToUpload" id="modif_fileToUpload">
 										<input type="hidden" name="idImage" value="<?php echo $mentalMap['IMA_Id']; ?>">
 									</div>
-									<input class="updateImgMap" type="image" value="Changer de carte mentale" name="submit" src="img/retour/modif_logo">
+									<input class="updateImgMap" type="image" value="Changer de carte mentale" name="submit" src="img/retour/modif_logo.png">
 								</form>
 	    			<?php
 	    					}
@@ -173,7 +195,7 @@
 							{
 	    			?>
 		    					<form action="retour.php" method="POST">
-		    						<input class="suppImgMap" type="image" name="suppressImg" value="supprimer" src="img/retour/supp_logo">
+		    						<input class="suppImgMap" type="image" name="suppressImg" value="supprimer" src="img/retour/supp_logo.png">
 		    						<input type="hidden" name="idImage" value="<?php echo $mentalMap['IMA_Id']; ?>">
 		    					</form>
 	    			<?php
@@ -202,7 +224,7 @@
 										<input class="updateImgLeftPath" type="file" name="modif_fileToUpload" id="modif_fileToUpload">
 										<input type="hidden" name="idImage" value="<?php echo $theImageLeft['IMA_Id']; ?>">
 									</div>
-									<input class="updateImgLeft" type="image" value="Changer l'image" name="submit" src="img/retour/modif_logo">
+									<input class="updateImgLeft" type="image" value="Changer l'image" name="submit" src="img/retour/modif_logo.png">
 								</form>
 	    			<?php
 	    					}
@@ -214,7 +236,7 @@
 							{
 	    			?>
 		    					<form action="retour.php" method="POST">
-		    						<input class="suppImgLeft" type="image" name="suppressImg" value="supprimer" src="img/retour/supp_logo">
+		    						<input class="suppImgLeft" type="image" name="suppressImg" value="supprimer" src="img/retour/supp_logo.png">
 		    						<input type="hidden" name="idImage" value="<?php echo $theImageLeft['IMA_Id']; ?>">
 		    					</form>
 	    			<?php
@@ -222,103 +244,17 @@
 	    				}
 	    				$counter++;
     				}
+
+    				while ($textLeft = $text_block_left->fetch()) {
+    					// Si le compteur est pair
+            			if ($counter%2 == 1)
+            			{
+            				echo "<div class=\"tex_left\"><p>".$textLeft['TEX_Text']."</p></div>";
+            			}
+            			$counter++;
+    				}
     				?>
     			</div>
-
-    			
-    			<?php // Si l'utilisateur est connecté au site
-				if (isset($_SESSION['login']) && $_SESSION['id']) 
-				{
-				?>
-					<button class="buttonVideo" onclick="btnClickVideo()">Ajouter vidéo</button>
-
-					<p id="buttonVideo"></p>
-
-					<script>
-						function btnClickVideo() {
-						    document.getElementById("buttonVideo").innerHTML = '<div style="width: 100%"><form method="POST" action="retour.php"><div class="buttonVideoLabel"><label for="link">Veuillez coller le lien YouTube de la vidéo : </label></div><div class="buttonVideoLink"><input type="url" name="link" id="link" placeholder="Ex : https://www.youtube.com/watch?v=GAdob1t4Nyk&t=84s&ab_channel=FeastOfFiction" size="60" maxlength="999" /></div><div><input class="buttonVideoSubmit" type="submit" value="Valider" /></div></form></div>';
-						}
-					</script>
-				<?php
-				}
-				?>
-				
-    			<div class="vid_block1">
-					<?php
-					// Réinitialisation du compteur
-					$counter = 1;
-
-					while ($theVideo = $vid_block->fetch()) {
-						// Si l'utilisateur est connecté au site
-						if (isset($_SESSION['login']) && $_SESSION['id']) 
-						{
-					?>
-							<form method="POST" action="retour.php">
-								<div class="modifVidUrl">
-									<input type="url" name="modifLink" id="modifLink" placeholder="Ex : https://www.youtube.com/watch?v=GAdob1t4Nyk&t=84s&ab_channel=FeastOfFiction" size="15" maxlength="999" />
-								</div>
-								<input class="modifVid" type="image" name="modifVid" value="Changer la vidéo" src="img/retour/modif_logo.png" />
-								<input type="hidden" name="idVideo" value="<?php echo $theVideo['VID_Id']; ?>">
-							</form>
-					<?php
-						}
-						echo '<iframe style="margin-left: 5%;" src="'.$theVideo['VID_Lien'].'" frameborder="0" allowfullscreen></iframe>';
-
-						// Si l'utilisateur est connecté au site
-						if (isset($_SESSION['login']) && $_SESSION['id']) 
-						{
-	    			?>
-	    					<form action="retour.php" method="POST">
-	    						<input class="suppVid" type="image" name="suppressVid" value="supprimer" src="img/retour/suppVideo_logo.png">
-	    						<input type="hidden" name="idVideo" value="<?php echo $theVideo['VID_Id']; ?>">
-	    					</form>
-	    			<?php
-	    				}
-						
-						// S'il y a 3 vidéos
-						if ($counter == 3) {
-						?>
-							</div>
-							<div class="vid_block2">
-						<?php
-						}
-
-						// S'il y a 6 vidéos
-						if ($counter == 6) {
-						?>
-							</div>
-							<div class="vid_block3">
-						<?php
-						}
-
-						// S'il y a 9 vidéos
-						if ($counter == 9) {
-						?>
-							</div>
-						<?php
-						}
-						$counter++;
-					}
-
-					// Le nombre de vidéos
-					$nb_vid = $bdd->prepare('SELECT COUNT(VID_Id) AS Nombre FROM video WHERE VID_Type = "Illustration de la journée"');
-					$nb_vid->execute();
-
-					$number = $nb_vid->fetch();
-
-					// Convertion du type string en type int
-					$numberVideo = intval($number['Nombre']);
-
-					if ($numberVideo > 9) 
-					{
-					?>
-						<div>
-							<p><a href="retourVideo.php"><button class="all_video">Voir toutes les vidéo</button></a></p>
-						</div>
-					<?php
-					}
-					?>
-				</div>
 			</div>
         </div>
         <?php
@@ -334,10 +270,6 @@
 			<style type="text/css">
 				.mental_map {
 					margin-top: 231px;
-				}
-				.vid_block2, .vid_block3, .vid_block1 {
-				  margin-left: -137px;
-				  width: 13%;
 				}
 
 				@media (max-width: 1199px)
@@ -355,12 +287,9 @@
 					    margin-top: 50px;
 					}
 
-					.vid_block1, .vid_block2, .vid_block3 {
-						display: flex;
-						flex-direction: column;
-						margin-left: 313px;
-    					width: 66%;
-					}
+					.tex_left, .tex_right {
+					    margin-left: 411px;
+					  }
 				}
 
 				@media (max-width: 992px)
@@ -373,14 +302,9 @@
 					    margin-left: 0px;
 					}
 
-					.vid_block1, .vid_block2, .vid_block3 {
-						margin-left: 195px;
-    					width: 71%;
-    				}
-
-    				.vid_block2 {
-	    				margin-top: 0px;
-	    			}
+					.tex_left, .tex_right {
+					    margin-left: 0px;
+					  }
 				}
 
 				@media (max-width: 768px)
@@ -388,22 +312,12 @@
 					.img_block_right, .img_block_left {
 					    margin-left: 126px;
 					}
-
-					.vid_block1, .vid_block2, .vid_block3 {
-						margin-left: 111px;
-	    				width: 77%;
-	    			}
 				}
 
 				@media all and (max-width: 400px) 
 				{
 					.img_block_right, .img_block_left {
 					    margin-left: 59px;
-					}
-
-					.vid_block1, .vid_block2, .vid_block3 {
-					    margin-left: 51px;
-					    width: 85%;
 					}
 				}
 			</style>
