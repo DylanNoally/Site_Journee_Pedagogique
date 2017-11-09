@@ -69,23 +69,19 @@
 		}
 
 
-		if(isset($_POST['link']))
-		{
-			// Récupération de la date et de l'heure du jour avec le bon fuseau horaire
-			date_default_timezone_set('Europe/Paris');
-			$date = date("Y-m-d");
+		if (isset($_POST['testimony'])) {
+			if (empty($_POST['testimony'])) {
+				// Ne rien faire
+			}
+			else {
+				$text = $_POST['testimony'];
 
-			$firstLink = $_POST['link'];
+				// Préparation de la requête SQL suivante : inserer le texte
+				$query = $bdd->prepare("INSERT INTO texte (TEX_Text, TEX_Type, UTI_Id) values (?, 'Illustration de la journée', ?)");
 
-			//conversion du lien pour que la video s'affiche
-			// Remplacer "watch?v=" par "embed/" dans le lien
-			$firstLink = preg_replace('#watch\?v=#isU', 'embed/', $firstLink);
-
-			// Supprimer tous ce qui se trouve après "&ab_channel=" dans le lien
-			$finalLink = preg_replace('~&ab_channel=.*~', '', $firstLink);
-			
-			$query = $bdd->prepare("INSERT INTO video (VID_Date, VID_Lien, VID_Type, UTI_Id) values (?, ?, 'Illustration de la journée', ?)");
-			$query->execute(array($date, $finalLink, $idUser));
+				// Exécution de la requête 
+				$query->execute(array($text, $idUser));
+			}
 		}
 	}
 					
